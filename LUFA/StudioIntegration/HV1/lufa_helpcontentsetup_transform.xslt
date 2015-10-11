@@ -1,6 +1,6 @@
 <!--
              LUFA Library
-     Copyright (C) Dean Camera, 2013.
+     Copyright (C) Dean Camera, 2015.
 
   dean [at] fourwalledcubicle [dot] com
            www.lufa-lib.org
@@ -25,7 +25,17 @@
 	</xsl:template>
 
 	<!-- Update the LUFA help package file name -->
-	<xsl:template match="xhtml:div[@class='package']/xhtml:a">
+	<xsl:template match="xhtml:div[@class='package']/xhtml:span[@class='name']">
+		<xsl:copy>
+			<xsl:copy-of select="@class"/>
+
+			<xsl:text>lufa_help_</xsl:text>
+			<xsl:value-of select="$extension-version"/>
+			<xsl:text>.mshc</xsl:text>
+		</xsl:copy>
+	</xsl:template>
+
+	<xsl:template match="xhtml:div[@class='package']/xhtml:a[@class='current-link']">
 		<xsl:copy>
 			<xsl:copy-of select="@class"/>
 
